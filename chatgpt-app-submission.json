@@ -92,6 +92,78 @@
     }
   ],
   "tools": {
+    "ghl_agency_connection_health": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "justifications": {
+        "destructive_justification": "Read-only inspection of connection health, active Safe-Writes Policy preset, and progressive discovery status.",
+        "open_world_justification": "Queries only the authenticated HighLevel Agency MCP server session.",
+        "read_only_justification": "Checks connection health and policy state without mutating agency or sub-account records."
+      }
+    },
+    "ghl_agency_tools_search": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "justifications": {
+        "destructive_justification": "Read-only search across native HighLevel Agency MCP tools and domain packs.",
+        "open_world_justification": "Searches the internal tool catalog of the HighLevel Agency MCP server.",
+        "read_only_justification": "Only searches and returns tool metadata without mutating state."
+      }
+    },
+    "ghl_agency_tools_enable": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "justifications": {
+        "destructive_justification": "Dynamically enables a tool pack or specific tool names for the current Progressive Discovery session without deleting records.",
+        "open_world_justification": "Updates only the active MCP session's enabled tool pack configuration.",
+        "read_only_justification": "Modifies the active session tool visibility when requested by the assistant."
+      }
+    },
+    "ghl_agency_contexts": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "justifications": {
+        "destructive_justification": "Read-only listing of configured HighLevel agency account contexts and sub-account locations.",
+        "open_world_justification": "Operates strictly within the authenticated HighLevel agency configuration.",
+        "read_only_justification": "Lists available contexts and locations without modifying state."
+      }
+    },
+    "ghl_agency_doctor": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "justifications": {
+        "destructive_justification": "Read-only readiness check of Private Integration Token (PIT), CRM session, company, and seed location.",
+        "open_world_justification": "Queries only the authenticated HighLevel agency and sub-account endpoints.",
+        "read_only_justification": "Verifies authentication and token scope readiness without mutating records."
+      }
+    },
+    "ghl_agency_locations": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "justifications": {
+        "destructive_justification": "Lists, inspects, or updates HighLevel sub-account locations with dry-run preview and read-back verification without deleting sub-accounts.",
+        "open_world_justification": "Operates strictly within the authenticated HighLevel agency account.",
+        "read_only_justification": "Supports updating sub-account location metadata after dry-run preview."
+      }
+    },
     "ghl_snapshot_diff_audit": {
       "annotations": {
         "destructiveHint": false,
