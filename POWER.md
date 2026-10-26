@@ -46,6 +46,9 @@ Connect Kiro to the remote Streamable HTTP MCP endpoint:
 - `ghl_agency_connection_health`: Check HighLevel Agency MCP connection health, active Safe-Writes Policy preset, and progressive discovery status.
 - `ghl_agency_tools_search`: Search across all 55 native HighLevel Agency MCP tools and tool packs by keyword or domain pack.
 - `ghl_agency_tools_enable`: Dynamically enable a HighLevel MCP tool pack or specific tool names for the current Progressive Discovery session.
+- `ghl_agency_contexts`: List configured HighLevel agency account contexts and known sub-account locations without mutating state.
+- `ghl_agency_doctor`: Verify HighLevel agency Private Integration Token (PIT), CRM session, company, and seed location readiness.
+- `ghl_agency_locations`: List, inspect, or update HighLevel sub-account locations with dry-run preview and read-back verification.
 - `ghl_snapshot_diff_audit`: Compare a live HighLevel client sub-account against a reference Master Snapshot without overwriting assets.
 - `ghl_site_builder_sync`: Export, diff, and update HighLevel funnel steps and website layouts while preserving 2-step carts and 1-click upsells.
 - `ghl_domain_ssl_onboard`: Plan, verify, and attach HighLevel custom funnel domains and branded short-link CNAME/A/TXT records with SSL checks.
