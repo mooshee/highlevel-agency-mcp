@@ -1,0 +1,23 @@
+{
+  "author": {
+    "name": "Daniel Hallman"
+  },
+  "description": "The full-stack GoHighLevel (GHL) MCP for agency owners and funnel builders: automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs.",
+  "homepage": "https://ghlagencymcp.com",
+  "keywords": [
+    "highlevel",
+    "gohighlevel",
+    "ghl",
+    "mcp",
+    "agency",
+    "funnels",
+    "workflows",
+    "dns",
+    "snapshots"
+  ],
+  "mcpServers": "./.cursor/mcp.json",
+  "name": "highlevel-agency-mcp",
+  "repository": "https://github.com/mooshee/highlevel-agency-mcp",
+  "skills": "./skills/highlevel-agency-mcp",
+  "version": "1.0.0"
+}

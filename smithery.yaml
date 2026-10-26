@@ -1,0 +1,16 @@
+name: io.github.mooshee/highlevel-agency-mcp
+displayName: HighLevel Agency & Builder MCP
+description: Full-stack GoHighLevel (GHL) MCP for agency owners and funnel builders to automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam blockers, spam-shield IVRs, and snapshot diffs.
+version: 1.0.0
+homepage: https://ghlagencymcp.com
+repository: https://github.com/mooshee/highlevel-agency-mcp
+license: MIT
+remotes:
+  - type: streamable-http
+    url: https://ghlagencymcp.com/mcp
+startCommand:
+  type: http
+  url: https://ghlagencymcp.com/mcp
+  configSchema:
+    type: object
+    properties: {}

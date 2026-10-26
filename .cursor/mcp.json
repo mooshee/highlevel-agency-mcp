@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "highlevel-agency-mcp": {
+      "type": "streamable-http",
+      "url": "https://ghlagencymcp.com/mcp"
+    }
+  }
+}

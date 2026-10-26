@@ -1,0 +1,180 @@
+{
+  "$schema": "https://developers.openai.com/plugins/schemas/chatgpt-app-submission.v1.json",
+  "app_info": {
+    "category": "BUSINESS",
+    "contact_email": "daniel@mooshworks.com",
+    "description": "The full-stack GoHighLevel (GHL) MCP for agency owners and funnel builders — automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs from Claude, Cursor, ChatGPT, Grok Bot, Muse, Antigravity, and Perplexity.",
+    "display_name": "HighLevel Agency & Builder MCP",
+    "homepage": "https://ghlagencymcp.com",
+    "privacy_policy_url": "https://ghlagencymcp.com/privacy",
+    "subtitle": "Funnels, DNS, IVR & Snapshots",
+    "terms_of_service_url": "https://ghlagencymcp.com/terms"
+  },
+  "mcp_config": {
+    "transport": "streamable-http",
+    "url": "https://ghlagencymcp.com/mcp"
+  },
+  "negative_test_cases": [
+    {
+      "description": "Flight and travel booking",
+      "expected_output": "Do not invoke HighLevel Agency & Builder MCP; airline reservations are outside its domain.",
+      "user_prompt": "Book a roundtrip flight from New York to London for next week."
+    },
+    {
+      "description": "Banking and fund transfer",
+      "expected_output": "Do not invoke HighLevel Agency & Builder MCP; it cannot access private bank accounts or transfer funds.",
+      "user_prompt": "Transfer $500 from my checking account to my savings account immediately."
+    },
+    {
+      "description": "Personal calendar appointment",
+      "expected_output": "Do not invoke HighLevel Agency & Builder MCP; personal Google Calendar scheduling is outside its scope.",
+      "user_prompt": "Add a dentist appointment to my personal Google Calendar for 3 PM tomorrow."
+    }
+  ],
+  "positive_test_cases": [
+    {
+      "description": "Test Case 1: Snapshot Drift & Sub-Account Parity Audit",
+      "expected_output": "Compares the live client sub-account against the agency Master Snapshot and lists any missing custom fields, tags, or workflow drift.",
+      "user_prompt": "Diff our live client sub-account against our Master Snapshot and show any custom field or workflow drift."
+    },
+    {
+      "description": "Test Case 2: Funnel & Website Page Layout Update with Cart Preservation",
+      "expected_output": "Exports the funnel checkout page layout, updates headline copy and CSS, and publishes while preserving native 2-step order forms, order bumps, and 1-click upsells.",
+      "user_prompt": "Export our main funnel checkout page layout, update the headline and CSS, and publish while preserving the 2-step cart and 1-click upsell."
+    },
+    {
+      "description": "Test Case 3: Client Domain DNS, Branded Link & Spam-Shield IVR Onboarding",
+      "expected_output": "Plans and verifies client funnel and branded-link CNAME records, checks SSL readiness, and provisions a call-screening IVR workflow on the tracking number.",
+      "user_prompt": "Plan and verify our client branded-link domain CNAME and provision a spam-shield call-screening IVR on their tracking number."
+    },
+    {
+      "description": "Test Case 4: Custom Form & Survey Multi-Step Schema Generation",
+      "expected_output": "Compiles and publishes a multi-step lead capture form with conditional branching, mapped custom fields, and custom styling.",
+      "user_prompt": "Create a 3-step lead qualification form with conditional logic and map its fields to our sub-account custom fields."
+    },
+    {
+      "description": "Test Case 5: Agency Private Integration Token (PIT) & Sub-Account Health Check",
+      "expected_output": "Audits sub-account API token health, verifies explicit context routing between sandbox and production, and reports readiness.",
+      "user_prompt": "Run a health check across our agency sub-accounts and verify API token and domain SSL status."
+    }
+  ],
+  "review_instructions": {
+    "data_safety_attestation": "This MCP server does not retain user query data for model training.",
+    "test_account_credentials": "Free tier includes 1 sub-account, unlimited read-only audits, and 15 monthly draft edits with no credit card required.",
+    "video_walkthrough_url": "https://ghlagencymcp.com"
+  },
+  "schema_version": 1,
+  "test_cases": [
+    {
+      "description": "Test Case 1: Snapshot Drift & Sub-Account Parity Audit",
+      "expected_output": "Compares the live client sub-account against the agency Master Snapshot and lists any missing custom fields, tags, or workflow drift.",
+      "user_prompt": "Diff our live client sub-account against our Master Snapshot and show any custom field or workflow drift."
+    },
+    {
+      "description": "Test Case 2: Funnel & Website Page Layout Update with Cart Preservation",
+      "expected_output": "Exports the funnel checkout page layout, updates headline copy and CSS, and publishes while preserving native 2-step order forms, order bumps, and 1-click upsells.",
+      "user_prompt": "Export our main funnel checkout page layout, update the headline and CSS, and publish while preserving the 2-step cart and 1-click upsell."
+    },
+    {
+      "description": "Test Case 3: Client Domain DNS, Branded Link & Spam-Shield IVR Onboarding",
+      "expected_output": "Plans and verifies client funnel and branded-link CNAME records, checks SSL readiness, and provisions a call-screening IVR workflow on the tracking number.",
+      "user_prompt": "Plan and verify our client branded-link domain CNAME and provision a spam-shield call-screening IVR on their tracking number."
+    },
+    {
+      "description": "Test Case 4: Custom Form & Survey Multi-Step Schema Generation",
+      "expected_output": "Compiles and publishes a multi-step lead capture form with conditional branching, mapped custom fields, and custom styling.",
+      "user_prompt": "Create a 3-step lead qualification form with conditional logic and map its fields to our sub-account custom fields."
+    },
+    {
+      "description": "Test Case 5: Agency Private Integration Token (PIT) & Sub-Account Health Check",
+      "expected_output": "Audits sub-account API token health, verifies explicit context routing between sandbox and production, and reports readiness.",
+      "user_prompt": "Run a health check across our agency sub-accounts and verify API token and domain SSL status."
+    }
+  ],
+  "tools": {
+    "ghl_snapshot_diff_audit": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "justifications": {
+        "destructive_justification": "Read-only inspection and diff comparison of sub-account custom fields, tags, forms, and workflows against a target snapshot.",
+        "open_world_justification": "Operates strictly against the authenticated HighLevel agency and sub-account context.",
+        "read_only_justification": "Only reads and compares configuration schemas without mutating sub-account state."
+      }
+    },
+    "ghl_site_builder_sync": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "justifications": {
+        "destructive_justification": "Updates or publishes funnel and website page layouts with dry-run diff verification while preserving native commerce blocks.",
+        "open_world_justification": "Operates strictly within the explicitly targeted HighLevel sub-account funnel and website builder.",
+        "read_only_justification": "Creates or updates funnel step layouts, CSS, and copy upon explicit user instruction."
+      }
+    },
+    "ghl_domain_ssl_onboard": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": true,
+        "readOnlyHint": false
+      },
+      "justifications": {
+        "destructive_justification": "Plans, verifies, and attaches funnel, website, and branded-link domain records without deleting existing zone records.",
+        "open_world_justification": "Queries external DNS resolvers and domain registrars alongside HighLevel domain endpoints to verify CNAME/A/TXT propagation and SSL readiness.",
+        "read_only_justification": "Provisions and links client domains and branded short-link hosts when authorized."
+      }
+    },
+    "ghl_workflow_ivr_builder": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "justifications": {
+        "destructive_justification": "Creates or updates workflow automation graphs and call-screening IVRs without deleting existing customer records.",
+        "open_world_justification": "Operates strictly within the authenticated HighLevel sub-account workflow engine.",
+        "read_only_justification": "Synthesizes and publishes multi-branch workflows, IVR trees, and form schemas."
+      }
+    },
+    "ghl_custom_values_audit": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "justifications": {
+        "destructive_justification": "Batch-syncs sub-account Custom Values with dry-run diffing and scans templates for broken merge tags without deleting unrelated records.",
+        "open_world_justification": "Operates strictly within the authenticated HighLevel sub-account configuration.",
+        "read_only_justification": "Validates merge tags and upserts Custom Values from a reviewed manifest."
+      }
+    },
+    "ghl_phone_wallet_audit": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "justifications": {
+        "destructive_justification": "Read-only audit of sub-account LC Phone numbers, number pools, forwarding loops, and unassigned number wallet-drain risk.",
+        "open_world_justification": "Queries only the authenticated HighLevel sub-account telephony endpoints.",
+        "read_only_justification": "Inspects phone numbers, pools, and routing configuration without modifying numbers."
+      }
+    },
+    "ghl_user_role_governance": {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "justifications": {
+        "destructive_justification": "Provisions staff with least-privilege role presets (va-support, sales-rep, client-admin) or strips sub-account location assignments during offboarding without deleting historical CRM records.",
+        "open_world_justification": "Operates strictly within the authenticated HighLevel agency user management surface.",
+        "read_only_justification": "Creates or updates user role assignments after dry-run review."
+      }
+    }
+  }
+}

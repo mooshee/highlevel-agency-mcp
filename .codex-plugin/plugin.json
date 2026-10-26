@@ -1,0 +1,73 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "highlevel-agency-mcp",
+  "version": "1.0.0",
+  "description": "The full-stack GoHighLevel (GHL) MCP for agency owners and funnel builders: automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs.",
+  "author": {
+    "name": "Daniel Hallman",
+    "email": "daniel@mooshworks.com",
+    "url": "https://ghlagencymcp.com"
+  },
+  "homepage": "https://ghlagencymcp.com",
+  "repository": "https://github.com/mooshee/highlevel-agency-mcp",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "keywords": [
+    "highlevel",
+    "gohighlevel",
+    "ghl",
+    "mcp",
+    "agency",
+    "funnels",
+    "workflows",
+    "dns",
+    "snapshots",
+    "custom-values",
+    "saas-mode",
+    "telephony",
+    "ivr",
+    "spam-blocker",
+    "leadshield"
+  ],
+  "interface": {
+    "displayName": "HighLevel Agency & Builder MCP",
+    "shortDescription": "Funnels, DNS, IVR & Snapshots",
+    "longDescription": "The full-stack GoHighLevel (GHL) MCP for agency owners and funnel builders. Automate funnel and website layouts, CSS, and copy while keeping native 2-step carts, order bumps, and 1-click upsells intact. Batch-sync Custom Values and scan templates for broken merge tags, manage SaaS Mode rebilling, configure Brand Boards and Chat Widgets, provision users with least-privilege role presets, audit LC Phone numbers for wallet drain, onboard client domains with DNS and SSL verification, deploy 1-command spam-shield IVRs, and diff live sub-accounts against Master Snapshots.",
+    "developerName": "Daniel Hallman",
+    "category": "Business & Operations",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://ghlagencymcp.com",
+    "privacyPolicyURL": "https://ghlagencymcp.com/privacy",
+    "termsOfServiceURL": "https://ghlagencymcp.com/terms",
+    "defaultPrompt": [
+      "Diff our live client sub-account against our Master Snapshot, sync Custom Values, and validate that no broken merge tags or TBD placeholders remain.",
+      "Export our main funnel checkout page layout, update the headline and CSS, and publish while preserving the 2-step cart and 1-click upsell.",
+      "Audit our sub-account LC Phone numbers for unassigned wallet drain, verify our branded-link CNAME, and deploy LeadShield contact form spam blocking + a call-screening IVR."
+    ],
+    "brandColor": "#07223D",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.svg",
+    "screenshots": [
+      "./assets/screenshots/01-snapshot-diff-audit.png",
+      "./assets/screenshots/02-funnel-builder-sync.png",
+      "./assets/screenshots/03-domain-ssl-spam-ivr.png"
+    ]
+  },
+  "extensions": {
+    "com.openai": {
+      "displayName": "HighLevel Agency & Builder MCP",
+      "categories": [
+        "Business",
+        "Productivity",
+        "Developer Tools"
+      ],
+      "privacyPolicy": "https://ghlagencymcp.com/privacy",
+      "termsOfService": "https://ghlagencymcp.com/terms"
+    }
+  }
+}
