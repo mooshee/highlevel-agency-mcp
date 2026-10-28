@@ -3,7 +3,7 @@
     "name": "Daniel Hallman",
     "url": "https://mooshworks.com"
   },
-  "description": "Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs. Built by Moosh Works (https://mooshworks.com).",
+  "description": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).",
   "homepage": "https://ghlagencymcp.com",
   "keywords": [
     "highlevel",
@@ -26,5 +26,5 @@
   "name": "highlevel-agency-mcp",
   "repository": "https://github.com/mooshee/highlevel-agency-mcp",
   "skills": "./skills/highlevel-agency-mcp",
-  "version": "1.1.1"
+  "version": "1.1.2"
 }

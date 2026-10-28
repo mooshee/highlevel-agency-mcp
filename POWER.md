@@ -1,9 +1,9 @@
 ---
 name: highlevel-agency-mcp
 displayName: HighLevel Agency & Builder MCP
-version: 1.1.1
+version: 1.1.2
 author: Daniel Hallman
-description: Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders.
+description: Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant.
 keywords:
   - highlevel
   - gohighlevel
@@ -26,18 +26,19 @@ mcpServers:
     url: https://ghlagencymcp.com/mcp
 ---
 
-# HighLevel Agency & Builder MCP Power (AWS Kiro)
+# HighLevel Agency & Builder MCP for Kiro
 
 Author: Daniel Hallman ([Moosh Works](https://mooshworks.com))
 
-Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs. Built by Moosh Works (https://mooshworks.com).
+Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).
 
 ## Quick start
 
-1. Visit [HighLevel Agency & Builder MCP](https://ghlagencymcp.com) or connect Kiro to `https://ghlagencymcp.com/mcp`.
-2. Built and maintained by [Moosh Works](https://mooshworks.com).
+1. Open [HighLevel Agency & Builder MCP](https://ghlagencymcp.com) for setup instructions.
+2. Add `https://ghlagencymcp.com/mcp` as an MCP server in Kiro using the configuration below. Complete any required sign-in.
+3. Check that the connection lists the plugin's tools before starting a task.
 
-## MCP Server Configuration
+## Server configuration
 
 ```json
 {
@@ -50,7 +51,7 @@ Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Aut
 }
 ```
 
-## Tools Available
+## Available tools
 
 - `ghl_agency_connection_health`
 - `ghl_agency_contexts`

@@ -3,11 +3,11 @@
   "app_info": {
     "category": "BUSINESS",
     "contact_email": "daniel@mooshworks.com",
-    "description": "The full-stack GoHighLevel (GHL) MCP for agency owners and funnel builders — automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs from Claude, Cursor, ChatGPT, Grok Bot, Muse, Antigravity, and Perplexity.",
+    "description": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings.",
     "display_name": "HighLevel Agency & Builder MCP",
     "homepage": "https://ghlagencymcp.com",
     "privacy_policy_url": "https://ghlagencymcp.com/privacy",
-    "subtitle": "Funnels, DNS, IVR & Snapshots",
+    "subtitle": "Manage HighLevel accounts",
     "terms_of_service_url": "https://ghlagencymcp.com/terms"
   },
   "mcp_config": {
@@ -33,27 +33,27 @@
   ],
   "positive_test_cases": [
     {
-      "description": "Test Case 1: Snapshot Drift & Sub-Account Parity Audit",
+      "description": "Compare sub-account settings with a snapshot",
       "expected_output": "Compares the live client sub-account against the agency Master Snapshot and lists any missing custom fields, tags, or workflow drift.",
-      "user_prompt": "Diff our live client sub-account against our Master Snapshot and show any custom field or workflow drift."
+      "user_prompt": "Compare our client sub-account with our Master Snapshot and show differences in custom fields or workflows."
     },
     {
-      "description": "Test Case 2: Funnel & Website Page Layout Update with Cart Preservation",
+      "description": "Update a checkout page while keeping its order form",
       "expected_output": "Exports the funnel checkout page layout, updates headline copy and CSS, and publishes while preserving native 2-step order forms, order bumps, and 1-click upsells.",
-      "user_prompt": "Export our main funnel checkout page layout, update the headline and CSS, and publish while preserving the 2-step cart and 1-click upsell."
+      "user_prompt": "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form and one-click upsell working."
     },
     {
-      "description": "Test Case 3: Client Domain DNS, Branded Link & Spam-Shield IVR Onboarding",
+      "description": "Connect a branded domain and set up call screening",
       "expected_output": "Plans and verifies client funnel and branded-link CNAME records, checks SSL readiness, and provisions a call-screening IVR workflow on the tracking number.",
-      "user_prompt": "Plan and verify our client branded-link domain CNAME and provision a spam-shield call-screening IVR on their tracking number."
+      "user_prompt": "Check our client's branded-link CNAME record and set up a call-screening menu on their tracking number."
     },
     {
-      "description": "Test Case 4: Custom Form & Survey Multi-Step Schema Generation",
+      "description": "Create a multi-step form",
       "expected_output": "Compiles and publishes a multi-step lead capture form with conditional branching, mapped custom fields, and custom styling.",
       "user_prompt": "Create a 3-step lead qualification form with conditional logic and map its fields to our sub-account custom fields."
     },
     {
-      "description": "Test Case 5: Agency Private Integration Token (PIT) & Sub-Account Health Check",
+      "description": "Check account access and connection health",
       "expected_output": "Audits sub-account API token health, verifies explicit context routing between sandbox and production, and reports readiness.",
       "user_prompt": "Run a health check across our agency sub-accounts and verify API token and domain SSL status."
     }
@@ -66,27 +66,27 @@
   "schema_version": 1,
   "test_cases": [
     {
-      "description": "Test Case 1: Snapshot Drift & Sub-Account Parity Audit",
+      "description": "Compare sub-account settings with a snapshot",
       "expected_output": "Compares the live client sub-account against the agency Master Snapshot and lists any missing custom fields, tags, or workflow drift.",
-      "user_prompt": "Diff our live client sub-account against our Master Snapshot and show any custom field or workflow drift."
+      "user_prompt": "Compare our client sub-account with our Master Snapshot and show differences in custom fields or workflows."
     },
     {
-      "description": "Test Case 2: Funnel & Website Page Layout Update with Cart Preservation",
+      "description": "Update a checkout page while keeping its order form",
       "expected_output": "Exports the funnel checkout page layout, updates headline copy and CSS, and publishes while preserving native 2-step order forms, order bumps, and 1-click upsells.",
-      "user_prompt": "Export our main funnel checkout page layout, update the headline and CSS, and publish while preserving the 2-step cart and 1-click upsell."
+      "user_prompt": "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form and one-click upsell working."
     },
     {
-      "description": "Test Case 3: Client Domain DNS, Branded Link & Spam-Shield IVR Onboarding",
+      "description": "Connect a branded domain and set up call screening",
       "expected_output": "Plans and verifies client funnel and branded-link CNAME records, checks SSL readiness, and provisions a call-screening IVR workflow on the tracking number.",
-      "user_prompt": "Plan and verify our client branded-link domain CNAME and provision a spam-shield call-screening IVR on their tracking number."
+      "user_prompt": "Check our client's branded-link CNAME record and set up a call-screening menu on their tracking number."
     },
     {
-      "description": "Test Case 4: Custom Form & Survey Multi-Step Schema Generation",
+      "description": "Create a multi-step form",
       "expected_output": "Compiles and publishes a multi-step lead capture form with conditional branching, mapped custom fields, and custom styling.",
       "user_prompt": "Create a 3-step lead qualification form with conditional logic and map its fields to our sub-account custom fields."
     },
     {
-      "description": "Test Case 5: Agency Private Integration Token (PIT) & Sub-Account Health Check",
+      "description": "Check account access and connection health",
       "expected_output": "Audits sub-account API token health, verifies explicit context routing between sandbox and production, and reports readiness.",
       "user_prompt": "Run a health check across our agency sub-accounts and verify API token and domain SSL status."
     }
@@ -209,7 +209,7 @@
       "justifications": {
         "destructive_justification": "Creates or updates workflow automation graphs and call-screening IVRs without deleting existing customer records.",
         "open_world_justification": "Operates strictly within the authenticated HighLevel sub-account workflow engine.",
-        "read_only_justification": "Synthesizes and publishes multi-branch workflows, IVR trees, and form schemas."
+        "read_only_justification": "Creates and publishes workflows, call menus, and form schemas."
       }
     },
     "ghl_custom_values_audit": {

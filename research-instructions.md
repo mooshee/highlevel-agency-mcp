@@ -1,6 +1,6 @@
 # HighLevel Agency & Builder MCP
 
-Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs. Built by Moosh Works (https://mooshworks.com).
+Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).
 
 Website: https://ghlagencymcp.com
 MCP Endpoint: https://ghlagencymcp.com/mcp

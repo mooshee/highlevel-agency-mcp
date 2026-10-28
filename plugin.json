@@ -4,7 +4,7 @@
     "name": "Daniel Hallman",
     "url": "https://ghlagencymcp.com"
   },
-  "description": "Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs. Built by Moosh Works (https://mooshworks.com).",
+  "description": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).",
   "extensions": {
     "com.openai": {
       "categories": [
@@ -18,23 +18,23 @@
         "category": "Business & Operations",
         "composerIcon": "./assets/icon.png",
         "defaultPrompt": [
-          "Diff our client sub-account against our Master Snapshot and validate Custom Values for broken merge tags.",
-          "Export our main funnel checkout layout, update the headline and CSS, and publish while preserving the 2-step cart.",
-          "Audit sub-account LC Phone numbers for wallet drain, verify our branded-link CNAME, and deploy a spam-shield IVR."
+          "Compare our client sub-account with our Master Snapshot and check Custom Values for broken merge tags.",
+          "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form working.",
+          "Check our sub-account for unused LC Phone numbers and forwarding loops."
         ],
         "developerName": "Daniel Hallman",
         "displayName": "HighLevel Agency & Builder",
         "logo": "./assets/icon.png",
-        "longDescription": "Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs. Built by Moosh Works (https://mooshworks.com).",
+        "longDescription": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).",
         "privacyPolicyURL": "https://ghlagencymcp.com/privacy",
-        "shortDescription": "Funnels, DNS, IVR & Snapshots",
+        "shortDescription": "Manage HighLevel accounts",
         "supportURL": "https://ghlagencymcp.com/support",
         "termsOfServiceURL": "https://ghlagencymcp.com/terms",
         "websiteURL": "https://ghlagencymcp.com"
       },
       "privacyPolicy": "https://ghlagencymcp.com/privacy",
       "publication": {
-        "release_notes": "Release v1.1.1: verified Streamable HTTP MCP tools and skills for HighLevel Agency & Builder MCP."
+        "release_notes": "Version 1.1.2 — October 28, 2026. Clearer descriptions, example prompts, and setup checks. Existing connections and features are unchanged. Update your plugin or skill to load the revised instructions."
       },
       "review": {
         "commerce": false,
@@ -56,31 +56,31 @@
           ],
           "positive": [
             {
-              "description": "Test Case 1: Snapshot Drift & Sub-Account Parity Audit",
+              "description": "Compare sub-account settings with a snapshot",
               "expected_behavior": "Compares the live client sub-account against the agency Master Snapshot and lists any missing custom fields, tags, or workflow drift.",
-              "prompt": "Diff our live client sub-account against our Master Snapshot and show any custom field or workflow drift.",
+              "prompt": "Compare our client sub-account with our Master Snapshot and show differences in custom fields or workflows.",
               "tools_triggered": "ghl_snapshot_diff_audit"
             },
             {
-              "description": "Test Case 2: Funnel & Website Page Layout Update with Cart Preservation",
+              "description": "Update a checkout page while keeping its order form",
               "expected_behavior": "Exports the funnel checkout page layout, updates headline copy and CSS, and publishes while preserving native 2-step order forms, order bumps, and 1-click upsells.",
-              "prompt": "Export our main funnel checkout page layout, update the headline and CSS, and publish while preserving the 2-step cart and 1-click upsell.",
+              "prompt": "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form and one-click upsell working.",
               "tools_triggered": "ghl_site_builder_sync"
             },
             {
-              "description": "Test Case 3: Client Domain DNS, Branded Link & Spam-Shield IVR Onboarding",
+              "description": "Connect a branded domain and set up call screening",
               "expected_behavior": "Plans and verifies client funnel and branded-link CNAME records, checks SSL readiness, and provisions a call-screening IVR workflow on the tracking number.",
-              "prompt": "Plan and verify our client branded-link domain CNAME and provision a spam-shield call-screening IVR on their tracking number.",
+              "prompt": "Check our client's branded-link CNAME record and set up a call-screening menu on their tracking number.",
               "tools_triggered": "ghl_domain_ssl_onboard"
             },
             {
-              "description": "Test Case 4: Custom Form & Survey Multi-Step Schema Generation",
+              "description": "Create a multi-step form",
               "expected_behavior": "Compiles and publishes a multi-step lead capture form with conditional branching, mapped custom fields, and custom styling.",
               "prompt": "Create a 3-step lead qualification form with conditional logic and map its fields to our sub-account custom fields.",
               "tools_triggered": "ghl_workflow_ivr_builder"
             },
             {
-              "description": "Test Case 5: Agency Private Integration Token (PIT) & Sub-Account Health Check",
+              "description": "Check account access and connection health",
               "expected_behavior": "Audits sub-account API token health, verifies explicit context routing between sandbox and production, and reports readiness.",
               "prompt": "Run a health check across our agency sub-accounts and verify API token and domain SSL status.",
               "tools_triggered": "ghl_agency_connection_health"
@@ -98,16 +98,16 @@
     "category": "Business & Operations",
     "composerIcon": "./assets/icon.png",
     "defaultPrompt": [
-      "Diff our client sub-account against our Master Snapshot and validate Custom Values for broken merge tags.",
-      "Export our main funnel checkout layout, update the headline and CSS, and publish while preserving the 2-step cart.",
-      "Audit sub-account LC Phone numbers for wallet drain, verify our branded-link CNAME, and deploy a spam-shield IVR."
+      "Compare our client sub-account with our Master Snapshot and check Custom Values for broken merge tags.",
+      "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form working.",
+      "Check our sub-account for unused LC Phone numbers and forwarding loops."
     ],
     "developerName": "Daniel Hallman",
     "displayName": "HighLevel Agency & Builder",
     "logo": "./assets/icon.png",
-    "longDescription": "Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs. Built by Moosh Works (https://mooshworks.com).",
+    "longDescription": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).",
     "privacyPolicyURL": "https://ghlagencymcp.com/privacy",
-    "shortDescription": "Funnels, DNS, IVR & Snapshots",
+    "shortDescription": "Manage HighLevel accounts",
     "supportURL": "https://ghlagencymcp.com/support",
     "termsOfServiceURL": "https://ghlagencymcp.com/terms",
     "websiteURL": "https://ghlagencymcp.com"
@@ -131,5 +131,5 @@
   ],
   "name": "highlevel-agency-mcp",
   "repository": "https://github.com/mooshee/highlevel-agency-mcp",
-  "version": "1.1.1"
+  "version": "1.1.2"
 }
