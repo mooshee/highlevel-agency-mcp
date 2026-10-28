@@ -1,18 +1,24 @@
 ---
 name: highlevel-agency-mcp
 displayName: HighLevel Agency & Builder MCP
-version: 1.0.0
+version: 1.1.1
 author: Daniel Hallman
-description: Full-stack GoHighLevel (GHL) MCP for agency owners and funnel builders to automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam blockers, spam-shield IVRs, and snapshot diffs.
+description: Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders.
 keywords:
   - highlevel
   - gohighlevel
   - ghl
   - mcp
+  - agency
   - funnels
   - workflows
   - dns
   - snapshots
+  - custom-values
+  - saas-mode
+  - telephony
+  - ivr
+  - spam-blocker
   - leadshield
 mcpServers:
   highlevel-agency-mcp:
@@ -22,13 +28,16 @@ mcpServers:
 
 # HighLevel Agency & Builder MCP Power (AWS Kiro)
 
-Author: Daniel Hallman
+Author: Daniel Hallman ([Moosh Works](https://mooshworks.com))
 
-HighLevel Agency & Builder MCP connects your AI assistant to GoHighLevel (GHL) to automate funnel and website layouts, client domain DNS & SSL onboarding, workflow graphs, LeadShield contact form spam guards, call-screening IVRs, and Master Snapshot diffs.
+Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs. Built by Moosh Works (https://mooshworks.com).
+
+## Quick start
+
+1. Visit [HighLevel Agency & Builder MCP](https://ghlagencymcp.com) or connect Kiro to `https://ghlagencymcp.com/mcp`.
+2. Built and maintained by [Moosh Works](https://mooshworks.com).
 
 ## MCP Server Configuration
-
-Connect Kiro to the remote Streamable HTTP MCP endpoint:
 
 ```json
 {
@@ -43,16 +52,16 @@ Connect Kiro to the remote Streamable HTTP MCP endpoint:
 
 ## Tools Available
 
-- `ghl_agency_connection_health`: Check HighLevel Agency MCP connection health, active Safe-Writes Policy preset, and progressive discovery status.
-- `ghl_agency_tools_search`: Search across all 55 native HighLevel Agency MCP tools and tool packs by keyword or domain pack.
-- `ghl_agency_tools_enable`: Dynamically enable a HighLevel MCP tool pack or specific tool names for the current Progressive Discovery session.
-- `ghl_agency_contexts`: List configured HighLevel agency account contexts and known sub-account locations without mutating state.
-- `ghl_agency_doctor`: Verify HighLevel agency Private Integration Token (PIT), CRM session, company, and seed location readiness.
-- `ghl_agency_locations`: List, inspect, or update HighLevel sub-account locations with dry-run preview and read-back verification.
-- `ghl_snapshot_diff_audit`: Compare a live HighLevel client sub-account against a reference Master Snapshot without overwriting assets.
-- `ghl_site_builder_sync`: Export, diff, and update HighLevel funnel steps and website layouts while preserving 2-step carts and 1-click upsells.
-- `ghl_domain_ssl_onboard`: Plan, verify, and attach HighLevel custom funnel domains and branded short-link CNAME/A/TXT records with SSL checks.
-- `ghl_workflow_ivr_builder`: Synthesize and publish HighLevel workflows, LeadShield contact form spam guards, and call-screening IVRs.
-- `ghl_custom_values_audit`: Batch-sync sub-account Custom Values and scan SMS/email templates for broken merge tags or TBD placeholders.
-- `ghl_phone_wallet_audit`: Read-only audit of sub-account LC Phone numbers, number pools, forwarding loops, and unassigned monthly wallet drain.
-- `ghl_user_role_governance`: Provision staff with least-privilege role presets or offboard sub-account access.
+- `ghl_agency_connection_health`
+- `ghl_agency_contexts`
+- `ghl_agency_doctor`
+- `ghl_agency_locations`
+- `ghl_agency_tools_enable`
+- `ghl_agency_tools_search`
+- `ghl_custom_values_audit`
+- `ghl_domain_ssl_onboard`
+- `ghl_phone_wallet_audit`
+- `ghl_site_builder_sync`
+- `ghl_snapshot_diff_audit`
+- `ghl_user_role_governance`
+- `ghl_workflow_ivr_builder`

@@ -1,9 +1,9 @@
 {
   "author": {
     "name": "Daniel Hallman",
-    "email": "daniel@mooshworks.com"
+    "url": "https://mooshworks.com"
   },
-  "description": "The full-stack GoHighLevel (GHL) MCP for agency owners and funnel builders: automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs.",
+  "description": "Full-stack GoHighLevel (GHL) automation for agency owners & funnel builders. Automate funnel layouts, client DNS & SSL, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and snapshot diffs. Built by Moosh Works (https://mooshworks.com).",
   "homepage": "https://ghlagencymcp.com",
   "keywords": [
     "highlevel",
@@ -22,8 +22,7 @@
     "spam-blocker",
     "leadshield"
   ],
-  "license": "MIT",
   "name": "highlevel-agency-mcp",
   "repository": "https://github.com/mooshee/highlevel-agency-mcp",
-  "version": "1.0.0"
+  "version": "1.1.1"
 }

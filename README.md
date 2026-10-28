@@ -71,3 +71,8 @@ HighLevel Agency & Builder MCP is the full-stack GoHighLevel (GHL) Model Context
 - **Privacy Policy**: [https://ghlagencymcp.com/privacy](https://ghlagencymcp.com/privacy)
 - **Terms of Service**: [https://ghlagencymcp.com/terms](https://ghlagencymcp.com/terms)
 - **Release Notes**: [GitHub Releases](https://github.com/mooshee/highlevel-agency-mcp/releases)
+
+
+---
+
+Built and maintained by **[Moosh Works](https://mooshworks.com)**.

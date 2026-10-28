@@ -3,10 +3,7 @@
   "mcpServers": {
     "highlevel-agency-mcp": {
       "type": "streamable-http",
-      "url": "https://ghlagencymcp.com/mcp",
-      "headers": {
-        "User-Agent": "HighLevel-Agency-MCP/1.0.0"
-      }
+      "url": "https://ghlagencymcp.com/mcp"
     }
   }
 }

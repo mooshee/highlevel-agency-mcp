@@ -1,12 +1,12 @@
 ---
 name: highlevel-agency-mcp
-version: 1.0.0
-description: Automate GoHighLevel (GHL) funnel and website page layouts, client domain DNS & SSL onboarding, multi-step forms, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and sub-account snapshot diffs using HighLevel Agency & Builder MCP.
+version: 1.1.1
+description: Automate GoHighLevel (GHL) funnel and website page layouts, client domain DNS & SSL onboarding, multi-step forms, workflow graphs, LeadShield contact form spam & B2B solicitation blockers, spam-shield IVRs, and sub-account snapshot diffs using HighLevel Agency & Builder MCP. Built by Moosh Works (https://mooshworks.com).
 ---
 
 # HighLevel Agency & Builder MCP
 
-Author: Daniel Hallman
+Author: Daniel Hallman ([Moosh Works](https://mooshworks.com))
 
 Use the **HighLevel Agency & Builder MCP** (`https://ghlagencymcp.com/mcp`) whenever the user wants to inspect, build, update, or verify GoHighLevel (GHL) funnels, websites, domains, forms, workflows, LeadShield contact form spam guards, call-screening IVRs, or sub-account snapshots.
 
@@ -14,6 +14,7 @@ Use the **HighLevel Agency & Builder MCP** (`https://ghlagencymcp.com/mcp`) when
 
 1. Open [HighLevel Agency & Builder MCP](https://ghlagencymcp.com) for interactive blueprints, setup guides, or to connect your AI assistant to `https://ghlagencymcp.com/mcp`.
 2. Connect any Streamable HTTP MCP client (`https://ghlagencymcp.com/mcp`) or install the public plugin repository from [github.com/mooshee/highlevel-agency-mcp](https://github.com/mooshee/highlevel-agency-mcp).
+3. Built and maintained by [Moosh Works](https://mooshworks.com).
 
 ## Core Capabilities (13 Live MCP Tools)
 
