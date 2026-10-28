@@ -61,7 +61,7 @@
   "review_instructions": {
     "data_safety_attestation": "This MCP server does not retain user query data for model training.",
     "test_account_credentials": "Free tier includes 1 sub-account, unlimited read-only audits, and 15 monthly draft edits with no credit card required.",
-    "video_walkthrough_url": "https://ghlagencymcp.com"
+    "video_walkthrough_url": "REQUIRED BEFORE SUBMISSION: Add a reviewer-accessible recording of the HighLevel Agency & Builder MCP review cases. No recording has been verified."
   },
   "schema_version": 1,
   "test_cases": [

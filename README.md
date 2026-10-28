@@ -26,6 +26,10 @@ Confirm the target sub-account and whether it is a sandbox or production account
 
 For help, use [support](https://ghlagencymcp.com/support). See the [privacy policy](https://ghlagencymcp.com/privacy) and [terms](https://ghlagencymcp.com/terms) before connecting an account.
 
+## Package and review status
+
+The included OpenAI review draft still needs a verified recording and provider checks before submission. Installing this package does not submit it to a directory.
+
 ## Release notes
 
 [Version 1.1.2 — October 28, 2026](https://github.com/mooshee/highlevel-agency-mcp/releases/tag/v1.1.2) clarifies descriptions, example prompts, and setup checks. Existing connections and features are unchanged. Update your plugin or skill to load the revised instructions.
