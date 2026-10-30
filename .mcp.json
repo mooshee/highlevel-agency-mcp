@@ -2,7 +2,15 @@
   "mcpServers": {
     "highlevel-agency-mcp": {
       "type": "streamable-http",
-      "url": "https://ghlagencymcp.com/mcp"
+      "url": "https://ghlagencymcp.com/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": { "mode": "dcr" }
+          }
+        }
+      }
     }
   }
 }

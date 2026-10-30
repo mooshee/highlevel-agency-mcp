@@ -1,11 +1,11 @@
 {
   "contextFileName": "research-instructions.md",
-  "description": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).",
+  "description": "Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Built by Moosh Works (https://mooshworks.com).",
   "mcpServers": {
     "highlevel-agency-mcp": {
       "httpUrl": "https://ghlagencymcp.com/mcp"
     }
   },
   "name": "highlevel-agency-mcp",
-  "version": "1.1.2"
+  "version": "1.1.3"
 }

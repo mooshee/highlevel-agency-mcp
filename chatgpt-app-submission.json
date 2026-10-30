@@ -1,13 +1,196 @@
 {
-  "$schema": "https://developers.openai.com/plugins/schemas/chatgpt-app-submission.v1.json",
+  "tools": {
+    "ghl_agency_connection_health": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Check the HighLevel connection"
+      },
+      "justifications": {
+        "read_only_justification": "Reads connection and optional account-access checks. It may renew the supplied editing credential in memory, but does not change account records.",
+        "destructive_justification": "Does not delete, overwrite, publish, or revoke account data.",
+        "open_world_justification": "Optional doctor checks contact HighLevel for the connected sub-account. Editing-session renewal contacts the fixed authentication provider using the supplied refresh credential."
+      }
+    },
+    "ghl_agency_tools_search": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Find tools and workflow templates"
+      },
+      "justifications": {
+        "read_only_justification": "Searches the fixed tool and workflow-preset catalog without changing it or accessing customer records.",
+        "destructive_justification": "Returns catalog matches only; it cannot alter account resources.",
+        "open_world_justification": "The open-world flag is conservative for this external-service integration. This search itself reads local catalog metadata and makes no provider request."
+      }
+    },
+    "ghl_agency_tools_enable": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true,
+        "readOnlyHint": false,
+        "title": "Set the change policy"
+      },
+      "justifications": {
+        "read_only_justification": "Changes the current connection's policy for later tool requests, so it is not read-only. It does not change the HighLevel account itself.",
+        "destructive_justification": "Only selects a session policy. Later account changes still require their own preview, target, and apply request.",
+        "open_world_justification": "The open-world flag is conservative for this external-service integration. Policy selection itself changes only in-memory connection state and makes no provider request."
+      }
+    },
+    "ghl_agency_contexts": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Show the connected account"
+      },
+      "justifications": {
+        "read_only_justification": "Returns the sub-account and profile selected during connection. It does not switch accounts or change configuration.",
+        "destructive_justification": "Reads the connection-bound profile only and cannot alter or revoke access.",
+        "open_world_justification": "The open-world flag is conservative for this external-service integration. This operation returns the profile verified with HighLevel during connection; it does not make a new provider request."
+      }
+    },
+    "ghl_agency_doctor": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Check account access"
+      },
+      "justifications": {
+        "read_only_justification": "Checks read access to custom values, calendars, and workflows for the connected sub-account.",
+        "destructive_justification": "Does not repair settings, write records, or trigger workflows.",
+        "open_world_justification": "Sends authenticated read requests to HighLevel for the selected sub-account and reports unavailable permissions separately."
+      }
+    },
+    "ghl_agency_locations": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Inspect the connected sub-account"
+      },
+      "justifications": {
+        "read_only_justification": "Retrieves the connected location's profile, timezone, and configuration. Caller-supplied IDs cannot select a different account.",
+        "destructive_justification": "Does not create, update, or delete a location.",
+        "open_world_justification": "Reads the selected location from HighLevel using the credential provided during connection."
+      }
+    },
+    "ghl_snapshot_diff_audit": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Compare a sub-account with a snapshot export"
+      },
+      "justifications": {
+        "read_only_justification": "Compares a supplied snapshot export with live custom values, custom fields, tags, and calendars. It does not save or apply a snapshot.",
+        "destructive_justification": "Only computes a comparison. Omitted categories remain unverified and no account assets are overwritten.",
+        "open_world_justification": "Reads the four supported asset categories from the connected HighLevel sub-account. The supplied export is comparison input, not authority to access another account."
+      }
+    },
+    "ghl_site_builder_sync": {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true,
+        "readOnlyHint": false,
+        "title": "Preview or apply a page change"
+      },
+      "justifications": {
+        "read_only_justification": "Supports reads and previews, but can also apply an approved preview to an existing page, so the tool is not read-only.",
+        "destructive_justification": "Applying a preview can replace existing page text, styles, or content. It requires the same target and preview ID; checkout and upsell components must be preserved.",
+        "open_world_justification": "Reads and writes the selected HighLevel page using the supplied same-account editing session."
+      }
+    },
+    "ghl_domain_ssl_onboard": {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true,
+        "readOnlyHint": false,
+        "title": "Save and check a site domain"
+      },
+      "justifications": {
+        "read_only_justification": "Can save a domain record and funnel binding after a preview, so it is not read-only.",
+        "destructive_justification": "A saved binding can change existing domain or funnel settings. The preview and same-target apply request are required.",
+        "open_world_justification": "Reads and writes HighLevel domain settings and checks public DNS and HTTPS readiness for the supplied hostname. Private and special network addresses are rejected."
+      }
+    },
+    "ghl_workflow_ivr_builder": {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true,
+        "readOnlyHint": false,
+        "title": "Build a workflow or call menu"
+      },
+      "justifications": {
+        "read_only_justification": "Can create workflow drafts and separately publish an approved workflow, so it is not read-only. A dry run alone does neither.",
+        "destructive_justification": "Publication changes workflow and trigger state and can affect later form or call processing. Draft creation, publication, and actual execution are separate outcomes.",
+        "open_world_justification": "Uses the connected HighLevel sub-account's forms, tags, workflows, and routing settings. A LeadShield screening workflow requires a separately supplied site key and stores that key in HighLevel."
+      }
+    },
+    "ghl_custom_values_audit": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Check custom values and merge tags"
+      },
+      "justifications": {
+        "read_only_justification": "Inspects returned custom values and readable templates, plus optional supplied templates, for blank values and unresolved references.",
+        "destructive_justification": "Does not repair values, update templates, or send messages.",
+        "open_world_justification": "Reads available custom values and message-template data from the connected HighLevel sub-account. Supplied templates are audit input only."
+      }
+    },
+    "ghl_phone_wallet_audit": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Check phone routing and number pools"
+      },
+      "justifications": {
+        "read_only_justification": "Inspects available phone numbers, number pools, routing gaps, and forwarding loops. It reports missing access rather than inventing billing results.",
+        "destructive_justification": "Does not purchase numbers, change routing, place calls, or alter billing.",
+        "open_world_justification": "Reads the selected account's available phone and routing data through HighLevel. The sandbox has no Twilio account, so carrier-dependent results remain partial."
+      }
+    },
+    "ghl_user_role_governance": {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": true,
+        "title": "Check staff permissions"
+      },
+      "justifications": {
+        "read_only_justification": "Compares staff assigned to the connected sub-account with a selected permission preset.",
+        "destructive_justification": "Does not assign roles, remove users, or revoke access.",
+        "open_world_justification": "Reads assigned staff and permissions from HighLevel, filters results to the connected account, and returns audit findings."
+      }
+    }
+  },
   "app_info": {
     "category": "BUSINESS",
     "contact_email": "daniel@mooshworks.com",
-    "description": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings.",
-    "display_name": "HighLevel Agency & Builder MCP",
+    "description": "Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Review each proposed change before applying it, then verify the saved result.",
+    "display_name": "HighLevel Agency & Builder",
     "homepage": "https://ghlagencymcp.com",
     "privacy_policy_url": "https://ghlagencymcp.com/privacy",
-    "subtitle": "Manage HighLevel accounts",
+    "subtitle": "Review HighLevel changes",
     "terms_of_service_url": "https://ghlagencymcp.com/terms"
   },
   "mcp_config": {
@@ -16,237 +199,89 @@
   },
   "negative_test_cases": [
     {
-      "description": "Flight and travel booking",
-      "expected_output": "Do not invoke HighLevel Agency & Builder MCP; airline reservations are outside its domain.",
-      "user_prompt": "Book a roundtrip flight from New York to London for next week."
+      "description": "Refunding a funnel order is outside this app's available tool set. Explain that the user must use the payment provider or an authorized billing integration. A read-only tool-catalog search is allowed. Do not invoke unrelated account audits or workflow tools, access payment details, or claim a refund was issued.",
+      "user_prompt": "Refund $50 to the card used for yesterday's funnel order.",
+      "expected_output": "Refunding a funnel order is outside this app's available tool set. Explain that the user must use the payment provider or an authorized billing integration. A read-only tool-catalog search is allowed. Do not invoke unrelated account audits or workflow tools, access payment details, or claim a refund was issued."
     },
     {
-      "description": "Banking and fund transfer",
-      "expected_output": "Do not invoke HighLevel Agency & Builder MCP; it cannot access private bank accounts or transfer funds.",
-      "user_prompt": "Transfer $500 from my checking account to my savings account immediately."
+      "description": "Bulk CRM migration, including message attachments, is outside the available tool set. Explain the limit and ask the user to use a supported migration process. A read-only tool-catalog search is allowed. Do not access HubSpot, invoke unrelated account audits or workflow tools, or claim any records were imported.",
+      "user_prompt": "Import every HubSpot contact, past conversation, and attachment into HighLevel for me.",
+      "expected_output": "Bulk CRM migration, including message attachments, is outside the available tool set. Explain the limit and ask the user to use a supported migration process. A read-only tool-catalog search is allowed. Do not access HubSpot, invoke unrelated account audits or workflow tools, or claim any records were imported."
     },
     {
-      "description": "Personal calendar appointment",
-      "expected_output": "Do not invoke HighLevel Agency & Builder MCP; personal Google Calendar scheduling is outside its scope.",
-      "user_prompt": "Add a dentist appointment to my personal Google Calendar for 3 PM tomorrow."
+      "description": "The submitted tool set does not send SMS campaigns. A read-only tool-catalog search is allowed. Explain the limit without invoking an account audit or workflow tool as a substitute. Do not select recipients, send or queue messages, create a campaign, or claim delivery.",
+      "user_prompt": "Text every lead in our account a promotion right now.",
+      "expected_output": "The submitted tool set does not send SMS campaigns. A read-only tool-catalog search is allowed. Explain the limit without invoking an account audit or workflow tool as a substitute. Do not select recipients, send or queue messages, create a campaign, or claim delivery."
     }
   ],
   "positive_test_cases": [
     {
-      "description": "Compare sub-account settings with a snapshot",
-      "expected_output": "Compares the live client sub-account against the agency Master Snapshot and lists any missing custom fields, tags, or workflow drift.",
-      "user_prompt": "Compare our client sub-account with our Master Snapshot and show differences in custom fields or workflows."
+      "description": "Check the dedicated Marketplace sandbox connection. Use context marketplace-sandbox only and verify the actual account readiness checks.",
+      "user_prompt": "Check whether our Marketplace sandbox is ready to use. Include the account connection checks, and don't change anything.",
+      "tools_triggered": "ghl_agency_connection_health",
+      "expected_output": "Call ghl_agency_connection_health with includeDoctor true. Confirm the connected location is K7y1NkNaLMvf6l3ePSk3. The hosted tool does not accept a context argument. Report the returned account and connection checks, including any missing access. Do not infer readiness from ok:true, a tool count, or a policy label. Do not access moosh-growth."
     },
     {
-      "description": "Update a checkout page while keeping its order form",
-      "expected_output": "Exports the funnel checkout page layout, updates headline copy and CSS, and publishes while preserving native 2-step order forms, order bumps, and 1-click upsells.",
-      "user_prompt": "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form and one-click upsell working."
+      "description": "Find a supported funnel onboarding template. No customer account data is needed; results must come from the returned template catalog.",
+      "user_prompt": "Find the available funnel onboarding templates and explain which tasks each one supports.",
+      "tools_triggered": "ghl_agency_tools_search",
+      "expected_output": "Call ghl_agency_tools_search with query funnel and category onboarding. List only templates actually returned, with their names and supported actions. If none match, say so. Generic metadata without matches is not a successful search."
     },
     {
-      "description": "Connect a branded domain and set up call screening",
-      "expected_output": "Plans and verifies client funnel and branded-link CNAME records, checks SSL readiness, and provisions a call-screening IVR workflow on the tracking number.",
-      "user_prompt": "Check our client's branded-link CNAME record and set up a call-screening menu on their tracking number."
+      "description": "Inspect the dedicated FunnelLingo Demo sandbox location K7y1NkNaLMvf6l3ePSk3. This is a read-only case. Reviewer access to the repaired hosted service must be established before execution.",
+      "user_prompt": "Show the profile and timezone for FunnelLingo Demo in our Marketplace sandbox. Its location ID is K7y1NkNaLMvf6l3ePSk3. Don't update it.",
+      "tools_triggered": "ghl_agency_locations",
+      "expected_output": "Call ghl_agency_locations with location K7y1NkNaLMvf6l3ePSk3. Return only profile fields and timezone supplied by the tool, and identify any unavailable fields. The hosted tool does not accept a context argument. Do not change the location or substitute a production account."
     },
     {
-      "description": "Create a multi-step form",
-      "expected_output": "Compiles and publishes a multi-step lead capture form with conditional branching, mapped custom fields, and custom styling.",
-      "user_prompt": "Create a 3-step lead qualification form with conditional logic and map its fields to our sub-account custom fields."
+      "description": "Audit merge tags in the dedicated FunnelLingo Demo sandbox location K7y1NkNaLMvf6l3ePSk3. The repaired service must return actual audit evidence; a generic ok response does not pass.",
+      "user_prompt": "Check FunnelLingo Demo, location K7y1NkNaLMvf6l3ePSk3, for missing custom values or broken merge tags. Show the findings without changing them.",
+      "tools_triggered": "ghl_custom_values_audit",
+      "expected_output": "Call ghl_custom_values_audit with locationId K7y1NkNaLMvf6l3ePSk3. Explain findings and report the number of custom values and templates inspected. If both counts are zero, state that the audit cannot establish account-wide merge-tag validity. Do not claim a repair or use another location."
     },
     {
-      "description": "Check account access and connection health",
-      "expected_output": "Audits sub-account API token health, verifies explicit context routing between sandbox and production, and reports readiness.",
-      "user_prompt": "Run a health check across our agency sub-accounts and verify API token and domain SSL status."
+      "description": "Preview a multi-step intake workflow in the dedicated sandbox location K7y1NkNaLMvf6l3ePSk3. Do not publish a workflow, submit a lead, or trigger messages.",
+      "user_prompt": "Preview a multi-step intake workflow named FunnelLingo Demo Intake Review for location K7y1NkNaLMvf6l3ePSk3 using its test form bqXuxGwXUJhHXqqoLRU1 and existing tag 1x763LcIBaxUbsyX8ixw. Add a task to review the synthetic intake without contacting anyone. Show the proposed steps, but don't save or publish it.",
+      "tools_triggered": "ghl_workflow_ivr_builder",
+      "expected_output": "Call ghl_workflow_ivr_builder with locationId K7y1NkNaLMvf6l3ePSk3, name FunnelLingo Demo Intake Review, formId bqXuxGwXUJhHXqqoLRU1, preset multi-step-intake, dryRun true, publish false, input.tags [1x763LcIBaxUbsyX8ixw], and an input taskTitle and taskBody for reviewing the synthetic intake. Show the returned proposed workflow steps and any blockers. If the form, tag, or editing access is unavailable, stop and report that limit. Do not call with dryRun false, claim publication, or trigger customer communications."
     }
   ],
   "review_instructions": {
-    "data_safety_attestation": "This MCP server does not retain user query data for model training.",
-    "test_account_credentials": "Free tier includes 1 sub-account, unlimited read-only audits, and 15 monthly draft edits with no credit card required.",
-    "video_walkthrough_url": "REQUIRED BEFORE SUBMISSION: Add a reviewer-accessible recording of the HighLevel Agency & Builder MCP review cases. No recording has been verified."
+    "video_walkthrough_url": "https://github.com/mooshee/highlevel-agency-mcp/releases/download/v1.1.2/highlevel-chatgpt-review-20261029.mp4",
+    "test_account_credentials": "Use only the dedicated Marketplace sandbox credentials supplied in private portal fields. Begin Connect in ChatGPT and confirm location K7y1NkNaLMvf6l3ePSk3. Paste the supplied refreshable session JSON in the optional editing field. Never paste credentials into chat. A service restart requires reconnection.",
+    "data_safety_attestation": "The service processes credentials and account data in memory and does not use them for model training. HighLevel stores changes applied through its APIs. Disconnecting revokes the connection; a service restart requires reconnection."
   },
   "schema_version": 1,
   "test_cases": [
     {
-      "description": "Compare sub-account settings with a snapshot",
-      "expected_output": "Compares the live client sub-account against the agency Master Snapshot and lists any missing custom fields, tags, or workflow drift.",
-      "user_prompt": "Compare our client sub-account with our Master Snapshot and show differences in custom fields or workflows."
+      "description": "Check the dedicated Marketplace sandbox connection. Use context marketplace-sandbox only and verify the actual account readiness checks.",
+      "user_prompt": "Check whether our Marketplace sandbox is ready to use. Include the account connection checks, and don't change anything.",
+      "tools_triggered": "ghl_agency_connection_health",
+      "expected_output": "Call ghl_agency_connection_health with includeDoctor true. Confirm the connected location is K7y1NkNaLMvf6l3ePSk3. The hosted tool does not accept a context argument. Report the returned account and connection checks, including any missing access. Do not infer readiness from ok:true, a tool count, or a policy label. Do not access moosh-growth."
     },
     {
-      "description": "Update a checkout page while keeping its order form",
-      "expected_output": "Exports the funnel checkout page layout, updates headline copy and CSS, and publishes while preserving native 2-step order forms, order bumps, and 1-click upsells.",
-      "user_prompt": "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form and one-click upsell working."
+      "description": "Find a supported funnel onboarding template. No customer account data is needed; results must come from the returned template catalog.",
+      "user_prompt": "Find the available funnel onboarding templates and explain which tasks each one supports.",
+      "tools_triggered": "ghl_agency_tools_search",
+      "expected_output": "Call ghl_agency_tools_search with query funnel and category onboarding. List only templates actually returned, with their names and supported actions. If none match, say so. Generic metadata without matches is not a successful search."
     },
     {
-      "description": "Connect a branded domain and set up call screening",
-      "expected_output": "Plans and verifies client funnel and branded-link CNAME records, checks SSL readiness, and provisions a call-screening IVR workflow on the tracking number.",
-      "user_prompt": "Check our client's branded-link CNAME record and set up a call-screening menu on their tracking number."
+      "description": "Inspect the dedicated FunnelLingo Demo sandbox location K7y1NkNaLMvf6l3ePSk3. This is a read-only case. Reviewer access to the repaired hosted service must be established before execution.",
+      "user_prompt": "Show the profile and timezone for FunnelLingo Demo in our Marketplace sandbox. Its location ID is K7y1NkNaLMvf6l3ePSk3. Don't update it.",
+      "tools_triggered": "ghl_agency_locations",
+      "expected_output": "Call ghl_agency_locations with location K7y1NkNaLMvf6l3ePSk3. Return only profile fields and timezone supplied by the tool, and identify any unavailable fields. The hosted tool does not accept a context argument. Do not change the location or substitute a production account."
     },
     {
-      "description": "Create a multi-step form",
-      "expected_output": "Compiles and publishes a multi-step lead capture form with conditional branching, mapped custom fields, and custom styling.",
-      "user_prompt": "Create a 3-step lead qualification form with conditional logic and map its fields to our sub-account custom fields."
+      "description": "Audit merge tags in the dedicated FunnelLingo Demo sandbox location K7y1NkNaLMvf6l3ePSk3. The repaired service must return actual audit evidence; a generic ok response does not pass.",
+      "user_prompt": "Check FunnelLingo Demo, location K7y1NkNaLMvf6l3ePSk3, for missing custom values or broken merge tags. Show the findings without changing them.",
+      "tools_triggered": "ghl_custom_values_audit",
+      "expected_output": "Call ghl_custom_values_audit with locationId K7y1NkNaLMvf6l3ePSk3. Explain findings and report the number of custom values and templates inspected. If both counts are zero, state that the audit cannot establish account-wide merge-tag validity. Do not claim a repair or use another location."
     },
     {
-      "description": "Check account access and connection health",
-      "expected_output": "Audits sub-account API token health, verifies explicit context routing between sandbox and production, and reports readiness.",
-      "user_prompt": "Run a health check across our agency sub-accounts and verify API token and domain SSL status."
+      "description": "Preview a multi-step intake workflow in the dedicated sandbox location K7y1NkNaLMvf6l3ePSk3. Do not publish a workflow, submit a lead, or trigger messages.",
+      "user_prompt": "Preview a multi-step intake workflow named FunnelLingo Demo Intake Review for location K7y1NkNaLMvf6l3ePSk3 using its test form bqXuxGwXUJhHXqqoLRU1 and existing tag 1x763LcIBaxUbsyX8ixw. Add a task to review the synthetic intake without contacting anyone. Show the proposed steps, but don't save or publish it.",
+      "tools_triggered": "ghl_workflow_ivr_builder",
+      "expected_output": "Call ghl_workflow_ivr_builder with locationId K7y1NkNaLMvf6l3ePSk3, name FunnelLingo Demo Intake Review, formId bqXuxGwXUJhHXqqoLRU1, preset multi-step-intake, dryRun true, publish false, input.tags [1x763LcIBaxUbsyX8ixw], and an input taskTitle and taskBody for reviewing the synthetic intake. Show the returned proposed workflow steps and any blockers. If the form, tag, or editing access is unavailable, stop and report that limit. Do not call with dryRun false, claim publication, or trigger customer communications."
     }
-  ],
-  "tools": {
-    "ghl_agency_connection_health": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": true
-      },
-      "justifications": {
-        "destructive_justification": "Read-only inspection of connection health, active Safe-Writes Policy preset, and progressive discovery status.",
-        "open_world_justification": "Queries only the authenticated HighLevel Agency MCP server session.",
-        "read_only_justification": "Checks connection health and policy state without mutating agency or sub-account records."
-      }
-    },
-    "ghl_agency_tools_search": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": true
-      },
-      "justifications": {
-        "destructive_justification": "Read-only search across native HighLevel Agency MCP tools and domain packs.",
-        "open_world_justification": "Searches the internal tool catalog of the HighLevel Agency MCP server.",
-        "read_only_justification": "Only searches and returns tool metadata without mutating state."
-      }
-    },
-    "ghl_agency_tools_enable": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": false
-      },
-      "justifications": {
-        "destructive_justification": "Dynamically enables a tool pack or specific tool names for the current Progressive Discovery session without deleting records.",
-        "open_world_justification": "Updates only the active MCP session's enabled tool pack configuration.",
-        "read_only_justification": "Modifies the active session tool visibility when requested by the assistant."
-      }
-    },
-    "ghl_agency_contexts": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": true
-      },
-      "justifications": {
-        "destructive_justification": "Read-only listing of configured HighLevel agency account contexts and sub-account locations.",
-        "open_world_justification": "Operates strictly within the authenticated HighLevel agency configuration.",
-        "read_only_justification": "Lists available contexts and locations without modifying state."
-      }
-    },
-    "ghl_agency_doctor": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": true
-      },
-      "justifications": {
-        "destructive_justification": "Read-only readiness check of Private Integration Token (PIT), CRM session, company, and seed location.",
-        "open_world_justification": "Queries only the authenticated HighLevel agency and sub-account endpoints.",
-        "read_only_justification": "Verifies authentication and token scope readiness without mutating records."
-      }
-    },
-    "ghl_agency_locations": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": false
-      },
-      "justifications": {
-        "destructive_justification": "Lists, inspects, or updates HighLevel sub-account locations with dry-run preview and read-back verification without deleting sub-accounts.",
-        "open_world_justification": "Operates strictly within the authenticated HighLevel agency account.",
-        "read_only_justification": "Supports updating sub-account location metadata after dry-run preview."
-      }
-    },
-    "ghl_snapshot_diff_audit": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": true
-      },
-      "justifications": {
-        "destructive_justification": "Read-only inspection and diff comparison of sub-account custom fields, tags, forms, and workflows against a target snapshot.",
-        "open_world_justification": "Operates strictly against the authenticated HighLevel agency and sub-account context.",
-        "read_only_justification": "Only reads and compares configuration schemas without mutating sub-account state."
-      }
-    },
-    "ghl_site_builder_sync": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": false
-      },
-      "justifications": {
-        "destructive_justification": "Updates or publishes funnel and website page layouts with dry-run diff verification while preserving native commerce blocks.",
-        "open_world_justification": "Operates strictly within the explicitly targeted HighLevel sub-account funnel and website builder.",
-        "read_only_justification": "Creates or updates funnel step layouts, CSS, and copy upon explicit user instruction."
-      }
-    },
-    "ghl_domain_ssl_onboard": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": true,
-        "readOnlyHint": false
-      },
-      "justifications": {
-        "destructive_justification": "Plans, verifies, and attaches funnel, website, and branded-link domain records without deleting existing zone records.",
-        "open_world_justification": "Queries external DNS resolvers and domain registrars alongside HighLevel domain endpoints to verify CNAME/A/TXT propagation and SSL readiness.",
-        "read_only_justification": "Provisions and links client domains and branded short-link hosts when authorized."
-      }
-    },
-    "ghl_workflow_ivr_builder": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": false
-      },
-      "justifications": {
-        "destructive_justification": "Creates or updates workflow automation graphs and call-screening IVRs without deleting existing customer records.",
-        "open_world_justification": "Operates strictly within the authenticated HighLevel sub-account workflow engine.",
-        "read_only_justification": "Creates and publishes workflows, call menus, and form schemas."
-      }
-    },
-    "ghl_custom_values_audit": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": false
-      },
-      "justifications": {
-        "destructive_justification": "Batch-syncs sub-account Custom Values with dry-run diffing and scans templates for broken merge tags without deleting unrelated records.",
-        "open_world_justification": "Operates strictly within the authenticated HighLevel sub-account configuration.",
-        "read_only_justification": "Validates merge tags and upserts Custom Values from a reviewed manifest."
-      }
-    },
-    "ghl_phone_wallet_audit": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": true
-      },
-      "justifications": {
-        "destructive_justification": "Read-only audit of sub-account LC Phone numbers, number pools, forwarding loops, and unassigned number wallet-drain risk.",
-        "open_world_justification": "Queries only the authenticated HighLevel sub-account telephony endpoints.",
-        "read_only_justification": "Inspects phone numbers, pools, and routing configuration without modifying numbers."
-      }
-    },
-    "ghl_user_role_governance": {
-      "annotations": {
-        "destructiveHint": false,
-        "openWorldHint": false,
-        "readOnlyHint": false
-      },
-      "justifications": {
-        "destructive_justification": "Provisions staff with least-privilege role presets (va-support, sales-rep, client-admin) or strips sub-account location assignments during offboarding without deleting historical CRM records.",
-        "open_world_justification": "Operates strictly within the authenticated HighLevel agency user management surface.",
-        "read_only_justification": "Creates or updates user role assignments after dry-run review."
-      }
-    }
-  }
+  ]
 }

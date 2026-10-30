@@ -4,7 +4,7 @@
     "name": "Daniel Hallman",
     "url": "https://ghlagencymcp.com"
   },
-  "description": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).",
+  "description": "Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Review each proposed change before applying it, then verify the saved result. Built by Moosh Works (https://mooshworks.com).",
   "extensions": {
     "com.openai": {
       "categories": [
@@ -18,75 +18,82 @@
         "category": "Business & Operations",
         "composerIcon": "./assets/icon.png",
         "defaultPrompt": [
-          "Compare our client sub-account with our Master Snapshot and check Custom Values for broken merge tags.",
-          "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form working.",
-          "Check our sub-account for unused LC Phone numbers and forwarding loops."
+          "Compare a supplied snapshot export with the connected sub-account and check Custom Values for unresolved placeholders.",
+          "Preview a headline and CSS change on a selected checkout page. Preserve the existing order form.",
+          "Inspect phone routing and forwarding loops. State any unavailable carrier access."
         ],
         "developerName": "Daniel Hallman",
         "displayName": "HighLevel Agency & Builder",
         "logo": "./assets/icon.png",
-        "longDescription": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).",
+        "longDescription": "Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Review each proposed change before applying it, then verify the saved result. Built by Moosh Works (https://mooshworks.com).",
         "privacyPolicyURL": "https://ghlagencymcp.com/privacy",
-        "shortDescription": "Manage HighLevel accounts",
+        "shortDescription": "Review HighLevel changes",
         "supportURL": "https://ghlagencymcp.com/support",
         "termsOfServiceURL": "https://ghlagencymcp.com/terms",
         "websiteURL": "https://ghlagencymcp.com"
       },
       "privacyPolicy": "https://ghlagencymcp.com/privacy",
       "publication": {
-        "release_notes": "Version 1.1.2 — October 28, 2026. Clearer descriptions, example prompts, and setup checks. Existing connections and features are unchanged. Update your plugin or skill to load the revised instructions."
+        "countries": [],
+        "release_notes": "Version 1.1.3 adds editing-session renewal, preserves public app registrations for reconnection after restarts, and updates tool declarations, setup instructions, and reviewer examples. Account access still ends on restart. Page changes, workflow drafts, publication, and delivery remain separate steps."
       },
       "review": {
-        "commerce": false,
-        "commerce_description": "HighLevel Agency & Builder MCP provides MCP tool execution and structured output. It does not process direct in-chat payments.",
+        "prompts": [
+          "Check our connected sub-account and report any missing access.",
+          "Find the available workflow templates and explain the returned matches.",
+          "Preview an intake using the form and tag IDs in the reviewer test case. Do not save or publish it."
+        ],
         "test_cases": {
-          "negative": [
-            {
-              "description": "Flight and travel booking",
-              "prompt": "Book a roundtrip flight from New York to London for next week."
-            },
-            {
-              "description": "Banking and fund transfer",
-              "prompt": "Transfer $500 from my checking account to my savings account immediately."
-            },
-            {
-              "description": "Personal calendar appointment",
-              "prompt": "Add a dentist appointment to my personal Google Calendar for 3 PM tomorrow."
-            }
-          ],
           "positive": [
             {
-              "description": "Compare sub-account settings with a snapshot",
-              "expected_behavior": "Compares the live client sub-account against the agency Master Snapshot and lists any missing custom fields, tags, or workflow drift.",
-              "prompt": "Compare our client sub-account with our Master Snapshot and show differences in custom fields or workflows.",
-              "tools_triggered": "ghl_snapshot_diff_audit"
+              "description": "Check the dedicated Marketplace sandbox connection. Use context marketplace-sandbox only and verify the actual account readiness checks.",
+              "prompt": "Check whether our Marketplace sandbox is ready to use. Include the account connection checks, and don't change anything.",
+              "tools_triggered": "ghl_agency_connection_health",
+              "expected_behavior": "Call ghl_agency_connection_health with includeDoctor true. Confirm the connected location is K7y1NkNaLMvf6l3ePSk3. The hosted tool does not accept a context argument. Report the returned account and connection checks, including any missing access. Do not infer readiness from ok:true, a tool count, or a policy label. Do not access moosh-growth."
             },
             {
-              "description": "Update a checkout page while keeping its order form",
-              "expected_behavior": "Exports the funnel checkout page layout, updates headline copy and CSS, and publishes while preserving native 2-step order forms, order bumps, and 1-click upsells.",
-              "prompt": "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form and one-click upsell working.",
-              "tools_triggered": "ghl_site_builder_sync"
+              "description": "Find a supported funnel onboarding template. No customer account data is needed; results must come from the returned template catalog.",
+              "prompt": "Find the available funnel onboarding templates and explain which tasks each one supports.",
+              "tools_triggered": "ghl_agency_tools_search",
+              "expected_behavior": "Call ghl_agency_tools_search with query funnel and category onboarding. List only templates actually returned, with their names and supported actions. If none match, say so. Generic metadata without matches is not a successful search."
             },
             {
-              "description": "Connect a branded domain and set up call screening",
-              "expected_behavior": "Plans and verifies client funnel and branded-link CNAME records, checks SSL readiness, and provisions a call-screening IVR workflow on the tracking number.",
-              "prompt": "Check our client's branded-link CNAME record and set up a call-screening menu on their tracking number.",
-              "tools_triggered": "ghl_domain_ssl_onboard"
+              "description": "Inspect the dedicated FunnelLingo Demo sandbox location K7y1NkNaLMvf6l3ePSk3. This is a read-only case. Reviewer access to the repaired hosted service must be established before execution.",
+              "prompt": "Show the profile and timezone for FunnelLingo Demo in our Marketplace sandbox. Its location ID is K7y1NkNaLMvf6l3ePSk3. Don't update it.",
+              "tools_triggered": "ghl_agency_locations",
+              "expected_behavior": "Call ghl_agency_locations with location K7y1NkNaLMvf6l3ePSk3. Return only profile fields and timezone supplied by the tool, and identify any unavailable fields. The hosted tool does not accept a context argument. Do not change the location or substitute a production account."
             },
             {
-              "description": "Create a multi-step form",
-              "expected_behavior": "Compiles and publishes a multi-step lead capture form with conditional branching, mapped custom fields, and custom styling.",
-              "prompt": "Create a 3-step lead qualification form with conditional logic and map its fields to our sub-account custom fields.",
-              "tools_triggered": "ghl_workflow_ivr_builder"
+              "description": "Audit merge tags in the dedicated FunnelLingo Demo sandbox location K7y1NkNaLMvf6l3ePSk3. The repaired service must return actual audit evidence; a generic ok response does not pass.",
+              "prompt": "Check FunnelLingo Demo, location K7y1NkNaLMvf6l3ePSk3, for missing custom values or broken merge tags. Show the findings without changing them.",
+              "tools_triggered": "ghl_custom_values_audit",
+              "expected_behavior": "Call ghl_custom_values_audit with locationId K7y1NkNaLMvf6l3ePSk3. Explain findings and report the number of custom values and templates inspected. If both counts are zero, state that the audit cannot establish account-wide merge-tag validity. Do not claim a repair or use another location."
             },
             {
-              "description": "Check account access and connection health",
-              "expected_behavior": "Audits sub-account API token health, verifies explicit context routing between sandbox and production, and reports readiness.",
-              "prompt": "Run a health check across our agency sub-accounts and verify API token and domain SSL status.",
-              "tools_triggered": "ghl_agency_connection_health"
+              "description": "Preview a multi-step intake workflow in the dedicated sandbox location K7y1NkNaLMvf6l3ePSk3. Do not publish a workflow, submit a lead, or trigger messages.",
+              "prompt": "Preview a multi-step intake workflow named FunnelLingo Demo Intake Review for location K7y1NkNaLMvf6l3ePSk3 using its test form bqXuxGwXUJhHXqqoLRU1 and existing tag 1x763LcIBaxUbsyX8ixw. Add a task to review the synthetic intake without contacting anyone. Show the proposed steps, but don't save or publish it.",
+              "tools_triggered": "ghl_workflow_ivr_builder",
+              "expected_behavior": "Call ghl_workflow_ivr_builder with locationId K7y1NkNaLMvf6l3ePSk3, name FunnelLingo Demo Intake Review, formId bqXuxGwXUJhHXqqoLRU1, preset multi-step-intake, dryRun true, publish false, input.tags [1x763LcIBaxUbsyX8ixw], and an input taskTitle and taskBody for reviewing the synthetic intake. Show the returned proposed workflow steps and any blockers. If the form, tag, or editing access is unavailable, stop and report that limit. Do not call with dryRun false, claim publication, or trigger customer communications."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Refunding a funnel order is outside this app's available tool set. Explain that the user must use the payment provider or an authorized billing integration. A read-only tool-catalog search is allowed. Do not invoke unrelated account audits or workflow tools, access payment details, or claim a refund was issued.",
+              "prompt": "Refund $50 to the card used for yesterday's funnel order."
+            },
+            {
+              "description": "Bulk CRM migration, including message attachments, is outside the available tool set. Explain the limit and ask the user to use a supported migration process. A read-only tool-catalog search is allowed. Do not access HubSpot, invoke unrelated account audits or workflow tools, or claim any records were imported.",
+              "prompt": "Import every HubSpot contact, past conversation, and attachment into HighLevel for me."
+            },
+            {
+              "description": "The submitted tool set does not send SMS campaigns. A read-only tool-catalog search is allowed. Explain the limit without invoking an account audit or workflow tool as a substitute. Do not select recipients, send or queue messages, create a campaign, or claim delivery.",
+              "prompt": "Text every lead in our account a promotion right now."
             }
           ]
-        }
+        },
+        "demo_recording_url": "https://github.com/mooshee/highlevel-agency-mcp/releases/download/v1.1.2/highlevel-chatgpt-review-20261029.mp4",
+        "commerce": true,
+        "commerce_description": "HighLevel Agency & Builder offers paid service plans on its website. Subscription setup and payment happen outside ChatGPT. These tools do not purchase plans, issue payments, or verify billing entitlements. The walkthrough uses the dedicated sandbox and does not test billing or plan limits."
       },
       "termsOfService": "https://ghlagencymcp.com/terms"
     }
@@ -98,16 +105,16 @@
     "category": "Business & Operations",
     "composerIcon": "./assets/icon.png",
     "defaultPrompt": [
-      "Compare our client sub-account with our Master Snapshot and check Custom Values for broken merge tags.",
-      "Update the headline and CSS on our checkout page, then publish it. Keep the two-step order form working.",
-      "Check our sub-account for unused LC Phone numbers and forwarding loops."
+      "Compare a supplied snapshot export with the connected sub-account and check Custom Values for unresolved placeholders.",
+      "Preview a headline and CSS change on a selected checkout page. Preserve the existing order form.",
+      "Inspect phone routing and forwarding loops. State any unavailable carrier access."
     ],
     "developerName": "Daniel Hallman",
     "displayName": "HighLevel Agency & Builder",
     "logo": "./assets/icon.png",
-    "longDescription": "Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).",
+    "longDescription": "Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Review each proposed change before applying it, then verify the saved result. Built by Moosh Works (https://mooshworks.com).",
     "privacyPolicyURL": "https://ghlagencymcp.com/privacy",
-    "shortDescription": "Manage HighLevel accounts",
+    "shortDescription": "Review HighLevel changes",
     "supportURL": "https://ghlagencymcp.com/support",
     "termsOfServiceURL": "https://ghlagencymcp.com/terms",
     "websiteURL": "https://ghlagencymcp.com"
@@ -131,5 +138,5 @@
   ],
   "name": "highlevel-agency-mcp",
   "repository": "https://github.com/mooshee/highlevel-agency-mcp",
-  "version": "1.1.2"
+  "version": "1.1.3"
 }

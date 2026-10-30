@@ -1,9 +1,9 @@
 ---
 name: highlevel-agency-mcp
 displayName: HighLevel Agency & Builder MCP
-version: 1.1.2
+version: 1.1.3
 author: Daniel Hallman
-description: Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant.
+description: Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Built by Moosh Works (https://mooshworks.com).
 keywords:
   - highlevel
   - gohighlevel
@@ -30,13 +30,13 @@ mcpServers:
 
 Author: Daniel Hallman ([Moosh Works](https://mooshworks.com))
 
-Manage HighLevel funnels, websites, domains, workflows, and sub-accounts from your AI assistant. Check forms for spam, set up call screening, and compare account settings. Built by Moosh Works (https://mooshworks.com).
+Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Review each preview before applying an authorized change. Built by Moosh Works (https://mooshworks.com).
 
 ## Quick start
 
 1. Open [HighLevel Agency & Builder MCP](https://ghlagencymcp.com) for setup instructions.
-2. Add `https://ghlagencymcp.com/mcp` as an MCP server in Kiro using the configuration below. Complete any required sign-in.
-3. Check that the connection lists the plugin's tools before starting a task.
+2. Add `https://ghlagencymcp.com/mcp` as an MCP server in Kiro using the configuration below. On the connection page, provide the intended sub-account's credentials. Keep credentials out of chat.
+3. Use `ghl_agency_connection_health` with `includeDoctor: true` to confirm the account and available access. Follow the [task instructions](skills/highlevel-agency-mcp/SKILL.md) for previews, saved-result checks, and tool limits.
 
 ## Server configuration
 
