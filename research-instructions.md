@@ -1,6 +1,6 @@
 ---
 name: highlevel-agency-mcp
-version: 1.1.3
+version: 1.1.4
 description: Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Built by Moosh Works (https://mooshworks.com).
 ---
 
@@ -13,9 +13,17 @@ Use this app to inspect the connected HighLevel sub-account and prepare supporte
 ## Connect and check access
 
 1. Open the [setup guide](https://ghlagencymcp.com), then connect to `https://ghlagencymcp.com/mcp` in a client that supports Streamable HTTP MCP.
-2. Select the intended sub-account and provide its Private Integration Token on the connection page. Website and workflow editing also require a builder session for that sub-account. Paste either a current token or session JSON containing `idToken`, `refreshToken`, and `apiKey` in the optional editing field. Session JSON supports renewal in memory; a token alone requires reconnection when it expires. Keep credentials out of chat and recordings.
+2. Select the intended sub-account and provide a dedicated Private Integration Token with only the permissions needed for your task. Leave the optional editing field empty for account checks. Website and workflow editing require a builder session; read the credential limits below before supplying one. Keep credentials out of chat and recordings.
 3. Call `ghl_agency_connection_health` with `includeDoctor: true`. Confirm the returned `locationId` before accessing account data. The connection is limited to that sub-account; reconnect to select another.
 4. Explain any missing access. A service restart ends this connection and requires reconnection.
+
+## Editing credentials and revocation
+
+The connection page sends the credentials you enter to the Moosh Works service at `ghlagencymcp.com`. Account credentials and editing refresh credentials stay in memory and are not written to persistent disk storage. Read the [privacy policy](https://ghlagencymcp.com/privacy) before connecting.
+
+The optional editing field accepts a current token or session JSON containing `idToken`, `refreshToken`, and `apiKey`. Session JSON can renew access. It carries the HighLevel user's permissions and is not limited by the Private Integration Token's scopes. The hosted tools enforce the selected sub-account and preview checks, but those checks do not narrow the underlying credential. Use a dedicated HighLevel user restricted to the intended sub-account and tasks. Supply renewable session JSON only after confirming those permissions and how your administrator can invalidate that session. Otherwise, leave the editing field empty or use a current token that expires without renewal.
+
+Disconnect this app in your assistant to revoke that app connection. Other connections remain separate. To invalidate the underlying Private Integration Token, delete or rotate it in HighLevel's Private Integrations settings; see [HighLevel's instructions](https://help.gohighlevel.com/support/solutions/articles/155000003054-private-integrations-everything-you-need-to-know). App disconnection does not rotate that token or invalidate the original HighLevel editing session. Ask your HighLevel administrator or support to invalidate the editing session and confirm the result. Do not treat signing out as proof of session invalidation.
 
 ## Supported tasks
 

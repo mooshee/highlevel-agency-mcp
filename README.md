@@ -7,7 +7,7 @@ Preview page and workflow changes, save domain bindings, and inspect settings fo
 ## Connect your assistant
 
 1. Connect a client that supports Streamable HTTP MCP to `https://ghlagencymcp.com/mcp`.
-2. On the connection page, provide the intended sub-account's location ID and Private Integration Token. Page and workflow tools also need a builder session for that sub-account. The optional editing field accepts a current token or session JSON with `idToken`, `refreshToken`, and `apiKey`. Session JSON supports renewal in memory. Keep credentials out of chat.
+2. On the connection page, provide the intended sub-account's location ID and a dedicated Private Integration Token with only the required permissions. Leave the editing field empty for account checks. Page and workflow tools also need a builder session. Before supplying one, read the [credential permissions and revocation instructions](skills/highlevel-agency-mcp/SKILL.md#editing-credentials-and-revocation). Renewable session credentials carry the HighLevel user's permissions beyond the integration token's scopes. Keep credentials out of chat.
 3. Check `ghl_agency_connection_health` with `includeDoctor: true` and confirm the returned location ID.
 4. Reconnect if access expires or the service restarts. See the [setup guide](https://ghlagencymcp.com) for help.
 
@@ -28,8 +28,8 @@ For help, use [support](https://ghlagencymcp.com/support). See the [privacy poli
 
 ## Package and review status
 
-This is version 1.1.3 of the public integration package. Its ChatGPT listing is in review. Installing this package does not establish ChatGPT directory approval.
+This is version 1.1.4 of the public integration package. The separate ChatGPT 1.1.3 listing is in review. Installing this package does not establish ChatGPT directory approval.
 
 ## Release notes
 
-Version 1.1.3 — October 30, 2026 updates connection instructions, supported tasks, and examples. See [release notes](RELEASE-NOTES.md) and the [versioned release](https://github.com/mooshee/highlevel-agency-mcp/releases/tag/v1.1.3).
+Version 1.1.4 — October 30, 2026 clarifies credential permissions and revocation. See [release notes](RELEASE-NOTES.md) and the [versioned release](https://github.com/mooshee/highlevel-agency-mcp/releases/tag/v1.1.4).

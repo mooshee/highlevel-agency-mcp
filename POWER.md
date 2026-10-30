@@ -1,7 +1,7 @@
 ---
 name: highlevel-agency-mcp
 displayName: HighLevel Agency & Builder MCP
-version: 1.1.3
+version: 1.1.4
 author: Daniel Hallman
 description: Preview HighLevel page and workflow changes, save domain bindings, and inspect settings for a connected sub-account. Built by Moosh Works (https://mooshworks.com).
 keywords:

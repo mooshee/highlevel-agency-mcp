@@ -1,14 +1,14 @@
-# HighLevel Agency & Builder 1.1.3
+# HighLevel Agency & Builder 1.1.4
 
 Author: Daniel Hallman
 
 October 30, 2026
 
-This update documents the hosted sub-account connection, previews required before changes, and separate checks for saved content, publication, and delivery.
+This update explains what access the optional editing credentials carry, when to leave them unset, and how to end app access. It distinguishes disconnecting the app from invalidating the original HighLevel credentials.
 
-Editing access can renew when you provide the session details described in the setup guide. The app can reconnect after a service restart. You still need to reconnect your account after a restart.
+Use a dedicated account and only the permissions needed for your task. Read the [connection instructions](https://github.com/mooshee/highlevel-agency-mcp/blob/v1.1.4/skills/highlevel-agency-mcp/SKILL.md) before supplying editing credentials. Existing connection behavior is unchanged.
 
-The instructions distinguish saved domain bindings from DNS and hosting setup, supplied snapshot comparisons from live snapshot retrieval, and staff-permission audits from role changes. Reviewer materials use the dedicated sandbox and disclose missing phone access.
+Version 1.1.3 added the hosted connection instructions, supported-task limits, and a verified walkthrough. Previous releases remain available.
 
 Update the plugin to load the revised instructions. See the [setup guide](https://ghlagencymcp.com) for connection help.
 
